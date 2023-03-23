@@ -1,0 +1,100 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport>
+    <!-- <mat-toolbar>
+      <div class="content">
+        <img class="retrocompu" src="../../../assets/logo.png" alt="">
+        <button class="btn" mat-flat-button>Retrocompu</button>
+      </div>
+    </mat-toolbar> -->
+    <!-- móvil -->
+    <mat-nav-list>
+      <button class="button" [routerLink]="['/productos/']"  mat-flat-button>Productos</button>
+      <div class="">
+        <!-- Para el menu desplegable -->
+        <mat-accordion>
+          <mat-expansion-panel hideToggle class="mat-elevation-z0">
+            <mat-expansion-panel-header hidden>
+              <mat-panel-title>
+                Corporativo
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-panel-description>
+              Socios
+            </mat-panel-description>
+            <button class="button" mat-flat-button>Nuestros socios</button>
+            <button class="button" mat-flat-button>Conviértete en un socio</button>
+            <mat-panel-description hidden>
+              Centros de Acopio
+            </mat-panel-description>
+          <button class="button" mat-flat-button>Centros de acopio</button>
+          <button class="button" mat-flat-button>Conviértete en un C.A</button>
+          </mat-expansion-panel>
+          <!-- ayuda -->
+          <mat-expansion-panel hideToggle class="mat-elevation-z0">
+            <mat-expansion-panel-header hidden>
+              <mat-panel-title>
+                Ayuda
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <button class="button" mat-flat-button>Preguntas Frecuentes</button>
+            <button class="button" mat-flat-button>Soporte Técnico</button>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <button class="button" mat-flat-button>Iniciar sesión</button>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="mat-elevation-z3">
+      <!-- sandvich button -->
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="is_handser | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <!-- fin móvil-->
+      <!-- inicio escritorio botones -->
+      <img class="retrocompu" src="../../../assets/logo.png" alt="">
+      <b class="name">Retrocompu</b>
+      <div class="buttons">
+        <button class="button" mat-flat-button [routerLink]="['/productos/']">Productos</button>
+        <button mat-button [matMenuTriggerFor]="corporativo">Corporativo</button>
+        <mat-menu #corporativo="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="socios">Socios</button>
+          <button mat-menu-item [matMenuTriggerFor]="acopio">Centros de Acopio</button>
+        </mat-menu>
+        <mat-menu #socios="matMenu">
+          <button mat-menu-item>Nuestros socios</button>
+          <button mat-menu-item>Conviértete en un socio</button>
+        </mat-menu>
+        <mat-menu #acopio="matMenu">
+          <button mat-menu-item>Centros de acopio</button>
+          <button mat-menu-item>Conviértete en un C.A.</button>
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="ayuda">Ayuda</button>
+        <mat-menu #ayuda="matMenu">
+          <button mat-menu-item >Preguntas Frecuentes</button>
+          <button mat-menu-item >Soporte técnico</button>
+        </mat-menu>
+        <button mat-icon-button matBadge={{cart_container.length}} [routerLink]="['/carrito/']" aria-label="shopping_cart">
+          <mat-icon>shopping_cart</mat-icon>
+        </button>
+        <span style="padding-right: 10px;"></span>
+        <button class="button" *ngIf="!is_logged" mat-flat-button [routerLink]="['/ingresar/']">Iniciar sesión</button>
+        <button class="button" *ngIf="!is_logged" color="primary" mat-flat-button [routerLink]="['/registrarse/']">Registrarse</button>
+        <button class="button" [matMenuTriggerFor]="perfil" *ngIf="is_logged" mat-flat-button [routerLink]="['/registrarse/']"><mat-icon>account_circle</mat-icon> {{user_data.name }} ∨	</button>
+        <mat-menu #perfil="matMenu">
+          <button mat-menu-item [routerLink]="(['/compras/'])">Mis compras</button>
+          <button mat-menu-item [routerLink]="(['/perfil/'])"> Mi perfíl</button>
+          <button *ngIf="is_logged" color="warn" (click)="signOut()" mat-flat-button [routerLink]="['/registrarse/']">Cerrar sesión</button>
+        </mat-menu>
+      </div>
+      <!-- fin escritorio-->
+    </mat-toolbar>
+    <!-- App component -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<!--
+[attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false" -->
