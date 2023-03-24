@@ -1,1 +1,19 @@
-<p>product-info works!</p>
+<div class="product-info">
+  <div class="product-images">
+    <img src={{product.picture_url}} alt="Product Main Image" class="product-main-image">
+    <div class="product-small-images">
+      <img src={{product.picture_url}} alt="Product Small Image 1" class="product-small-image">
+      <img src={{product.picture_url}} alt="Product Small Image 2" class="product-small-image">
+      <img src={{product.picture_url}} alt="Product Small Image 3" class="product-small-image">
+      <img src={{product.picture_url}} alt="Product Small Image 4" class="product-small-image">
+    </div>
+  </div>
+  <div class="product-details">
+    <h1 class="product-title">{{product.title}}</h1>
+    <p class="product-description">{{product.description}}
+    <p>
+    <p class="product-price">$19.99</p>
+    <button class="buy-now-btn">Comprar ahora</button>
+    <button class="add-cart">Agregar al carrito</button>
+  </div>
+</div>

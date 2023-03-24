@@ -23,11 +23,17 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 //ANGULAR FIREBASE
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from 'src/environments/environment';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 @NgModule({
@@ -52,9 +58,15 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     //ANGULAR MATERIAL
     MatSidenavModule,
     MatListModule,
+    MatSlideToggleModule,
     MatMenuModule,
     MatExpansionModule,
+    MatSnackBarModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
     MatToolbarModule,
+    MatFormFieldModule,
     MatBadgeModule,
     MatIconModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),

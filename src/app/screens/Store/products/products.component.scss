@@ -1,0 +1,257 @@
+.container {
+  margin-top: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.filters {
+  display: flex;
+}
+
+.product-info {
+  display: flex;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.card-price {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.card-title {
+  z-index: 1;
+  margin-top: 16px;
+  margin-bottom: 12px;
+  font-family: Inter, sans-serif;
+  color: #231f1e;
+  font-size: 18px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.valoracion {
+  font-size: 25px;
+  color: #08ac0a;
+  padding-bottom: 10px;
+}
+
+.product-save img {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.product-save {
+  position: absolute;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+}
+
+.image {
+  max-width: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  height: 250px;
+  width: 250px;
+}
+
+.rating {
+  color: #000;
+}
+
+.estrella {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.sub-title {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.title {
+  margin-right: 15px;
+  margin-left: 15px;
+  font-weight: 500;
+}
+
+.grid-container {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-column-gap: 24px;
+  grid-row-gap: 16px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+.product-info {
+  display: flex;
+}
+
+.add-cart {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  overflow: hidden;
+  width: 140px;
+  height: 50px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  transition: all 200ms ease;
+  text-decoration: none;
+  background-color: #ffffff;
+}
+
+.add-cart:hover {
+  background-color: #013d29;
+  color: #ffffff;
+}
+
+.rating {
+  display: inline-block;
+  font-size: 24px;
+  color: #ccc;
+  position: relative;
+}
+
+.rating::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: FontAwesome;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: gold;
+  overflow: hidden;
+  width: 0;
+}
+
+.rating::after {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: FontAwesome;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: calc(100% * 3.5 / 5);
+  color: gold;
+}
+
+.flecha {
+  display: inline-block;
+  font-size: 10px;
+  transform: rotate(45deg);
+  overflow: hidden;
+  width: 0.7em;
+  height: 0.7em;
+  margin-left: 10px;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+}
+
+.chips {
+  margin-top: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 5px;
+  background-color: #ebedec;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.dialog-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  color: black;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.message {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.button {
+  background-color: white;
+  color: #013d29;
+  border: 2px solid #013d29;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #013d29;
+  color: white;
+}
+
+
+//SPINNER
+
+.add-cart {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  overflow: hidden;
+  width: 140px;
+  height: 50px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  transition: all 200ms ease;
+  text-decoration: none;
+  background-color: #ffffff;
+}
+
+.add-cart:hover .add-cart-text {
+  display: none;
+}
+
+.add-cart:hover .add-cart-loader {
+  display: flex;
+}
+
+.add-cart-text {
+  display: block;
+  font-size: 16px;
+}
+
+.add-cart-loader {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.add-cart-loader i {
+  font-size: 16px;
+  color: #ffffff;
+  margin: 0 5px;
+}
+
+.add-cart-loader .fa-check {
+  display: none;
+}
+

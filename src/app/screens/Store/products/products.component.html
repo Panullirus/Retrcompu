@@ -1,1 +1,130 @@
-<p>products works!</p>
+<div class="container">
+  <img src="https://img.freepik.com/free-vector/black-friday-sale-banner-design-with-shopping-trolly_1055-9167.jpg"
+    alt="banner" width="100%" height="300">
+  <div class="filters">
+    <div class="chips"><span class="title">Tipo de computadora<span class="flecha"></span></span></div>
+    <div class="chips"><span class="title">Precio<span class="flecha"></span></span></div>
+    <div class="chips"><span class="title">Calificación<span class="flecha"></span></span></div>
+    <div class="chips"><span class="title">Color<span class="flecha"></span></span></div>
+    <div class="chips"><span class="title">Memoria<span class="flecha"></span></span></div>
+    <div class="chips"><span class="title">Tamaño de pantalla<span class="flecha"></span></span></div>
+    <div class="chips"><span class="title">Procesador<span class="flecha"></span></span></div>
+  </div>
+
+  <div class="sub-title">
+    <span>Todas las computadoras</span>
+  </div>
+
+  <div class="grid-container" *ngIf="filtered_product_container == undefined">
+    <div class="card" *ngFor="let product of products_container" style="padding-bottom: 10px;">
+      <div class="col-4" style="place-items: center; text-align: -webkit-center;">
+        <div class="image">
+          <img src={{product.picture_url}} alt="" height="100%" width="100%" style="cursor: pointer;"
+            (click)="goToProductInfo(product)">
+        </div>
+      </div>
+      <div class="product-content" style="text-align: initial;">
+        <div class="product-info">
+          <span class="card-title" style="text-align: left; font-size: 22px; cursor: pointer;"
+            (click)="goToProductInfo(product)">{{product?.title}}</span>
+          <span class="card-price">{{product?.price_formatted}}</span>
+        </div>
+        <div class="valoracion">
+          <span class="estrella">&#9733;</span>
+          <span class="estrella">&#9733;</span>
+          <span class="estrella">&#9733;</span>
+          <span class="estrella">&#9734;</span>
+          <span class="estrella">&#9734;</span>
+        </div>
+        <button class="add-cart" (click)="setProductCart(product)">
+          <span class="add-cart-text">Agregar al carrito</span>
+          <span class="add-cart-loader">
+            <i class="fas fa-spinner fa-spin"></i>
+            <i class="fas fa-check"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="dialog-box">
+    <p class="message">Producto agregado al carrito</p>
+    <button class="button">Aceptar</button>
+  </div> -->
+  <!-- <div class="row">
+    <div class="col-4">
+      <div class="card" style="text-align: start;">
+        <h1>Ordenar por</h1>
+        <br>
+        <mat-slide-toggle (change)="setMiPrice($event)" [disabled]="disableMiPrice">Menor precio</mat-slide-toggle>
+        <mat-slide-toggle (change)="setMaPrice($event)" [disabled]="disableMaPrice">Mayor precio</mat-slide-toggle>
+      </div>
+      <br>
+      <div class="card" style="text-align: start;">
+        <h1>Filtros</h1>
+        <button (click)="deleteFilter()">Limpiar filtros</button>
+        <br>
+        <h2>Tipo de reacondicionado</h2>
+        <span (click)="findByRefurbishedType('A')" style="font-size: 18px; text-decoration: underline; cursor: pointer;">Tipo A</span>
+        <span (click)="findByRefurbishedType('B')" style="font-size: 18px; text-decoration: underline; cursor: pointer;">Tipo B</span>
+        <span (click)="findByRefurbishedType('C')" style="font-size: 18px; text-decoration: underline; cursor: pointer;">Tipo C</span>
+        <br>
+        <h2>Marcas</h2>
+        <span (click)="findByRefurbishedBrand('Asus')" style="font-size: 18px; text-decoration: underline; cursor: pointer;">Asus</span>
+        <span (click)="findByRefurbishedBrand('Apple')" style="font-size: 18px; text-decoration: underline; cursor: pointer;">Apple</span>
+        <span (click)="findByRefurbishedBrand('HP')" style="font-size: 18px; text-decoration: underline; cursor: pointer;">HP</span>
+      </div>
+      <br>
+    </div>
+    <div class="col">
+      <div *ngIf="filtered_product_container == undefined">
+        <div class="card" *ngFor="let product of products_container" style="padding-bottom: 10px;">
+          <div class="row">
+            <div class="col-4" style="place-items: center; text-align: -webkit-center;">
+              <div class="image" style="height: 150px; width: 150px;">
+                <img src={{product.picture_url}} alt="" height="100%" width="100%" style="cursor: pointer;" (click)="goToProductInfo(product)">
+              </div>
+            </div>
+            <div class="col" style="text-align: initial;">
+              <br>
+              <span class="card-title" style="text-align: left; font-size: 22px; cursor: pointer;" (click)="goToProductInfo(product)">{{product?.title}}</span>
+              <br>
+              <br>
+              <span style="text-align: left; font-size: 25px; font-weight: 500;">{{product?.price_formatted}}</span>
+              <br>
+              <label style="padding-top: 10px; color: #00a650;">Pagando {{MSI}} meses sin interés por {{product.msi}}</label>
+              <button (click)="setProductCart(product)">agregar</button>
+            </div>
+            <br>
+          </div>
+          <br>
+        </div>
+      </div>
+      <div *ngIf="filtered_product_container !== undefined">
+        <div class="card" *ngFor="let product of filtered_product_container">
+          <div class="row">
+            <div class="col-4" style="place-items: center; text-align: -webkit-center;">
+              <div class="image" style="height: 150px; width: 150px;">
+                <img src={{product.picture_url}} alt="" height="100%" width="100%" (click)="goToProductInfo(product)">
+              </div>
+            </div>
+            <div class="col" style="text-align: initial;">
+              <br>
+              <span class="card-title" style="text-align: left; font-size: 22px;" (click)="goToProductInfo(product)">{{product?.title}}</span>
+              <br>
+              <div class="alert alert-primary" role="alert">
+                Hasta {{MSI}} Meses sin Interes por {{product.msi}}
+              </div>
+              <br>
+              <span style="text-align: left; font-size: 25px; font-weight: 500;">{{product?.price_formatted}}</span>
+              <br>
+              <label style="padding-top: 10px; color: #00a650;">Pagando {{MSI}} meses sin interés por {{product.msi}}</label>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div> -->
+</div>

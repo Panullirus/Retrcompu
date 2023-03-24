@@ -1,102 +1,73 @@
-.sidenav-container {
-  height: 100%;
-}
-
-.sidenav {
-  width: 200px;
-}
-
-.sidenav .mat-toolbar {
-  background: inherit;
-}
-
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
-  z-index: 1;
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   background-color: #ffffff;
-  color: black;
-}
-
-/* movil */
-@media only screen and (max-width:959px) {
-  .buttons {
-    display: none
-  }
-
-  .logotoolbar {
-    margin: 0 0 auto;
-    height: 50%;
-  }
-
-  .retrocompu{
-    height: 50%;
-  }
-
-  .name{
-    margin-left: 2%;
-  }
-
-  .content * {
-    display: block;
-    height: 100%;
-
-  }
-
-  .sidebtns {
-    align-self: center;
-    width: 50%;
-    display: block;
-    padding: 25%;
-    margin-top: 0%;
-  }
-
-  .btn {
-
-    margin-top: 2%;
-  }
-
-}
-
-
-/* escritorio */
-@media only screen and (min-width:1000px) {
-
-  /* .spacer {
-    margin-right: auto;
-  } */
-
-  .button{
-    margin-left: 2px;
-    margin-right: 2px;
-  }
-
-  .buttons{
-    margin-left: auto;
-  }
-
-  .retrocompu {
-    height: 50%;
-    margin: 0.5%;
-  }
-
-}
-
-.mat-progress-bar-fill::after{
-  background-color: brown;
-}
-
-.nav-header-username-chevron{
+  color: #fff;
+  padding-left: 50px;
+  padding-right: 50px;
   padding-top: 10px;
-  border-style: solid;
-  border-width: 0 1.5px 1.5px 0;
-  content: "";
+}
+
+input {
+  border-radius: 50px;
+  padding: 10px;
+  min-width: 20vw;
+  background-color: #f5f7f9;
+  border-color: #f5f7f9;
+  outline: none;
+
+  &:focus {
+    outline: none;
+  }
+
+}
+
+
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+.flecha {
   display: inline-block;
-  height: 6px;
-  position: relative;
+  font-size: 10px;
   transform: rotate(45deg);
-  width: 6px;
-  color: rgba(0, 0, 0, .3);
-  margin: 16px 0 0 6px;
-  vertical-align: top;
+  overflow: hidden;
+  width: 0.7em;
+  height: 0.7em;
+  margin-left: 10px;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+}
+
+.content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.search button {
+  border: none;
+  background-color: #fff;
+  color: #ffffff;
+  padding: 5px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+button {
+  display: inline-flex;
+  border: none;
+  background-color: #fff;
+  color: #333;
+  font-size: 16px;
+  padding: 5px;
+  cursor: pointer;
+  font-weight: bold;
 }

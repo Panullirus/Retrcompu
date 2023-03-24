@@ -8,7 +8,7 @@
     </mat-toolbar> -->
     <!-- móvil -->
     <mat-nav-list>
-      <button class="button" [routerLink]="['/productos/']"  mat-flat-button>Productos</button>
+      <button class="button" [routerLink]="['/productos/']" mat-flat-button>Productos</button>
       <div class="">
         <!-- Para el menu desplegable -->
         <mat-accordion>
@@ -26,8 +26,8 @@
             <mat-panel-description hidden>
               Centros de Acopio
             </mat-panel-description>
-          <button class="button" mat-flat-button>Centros de acopio</button>
-          <button class="button" mat-flat-button>Conviértete en un C.A</button>
+            <button class="button" mat-flat-button>Centros de acopio</button>
+            <button class="button" mat-flat-button>Conviértete en un C.A</button>
           </mat-expansion-panel>
           <!-- ayuda -->
           <mat-expansion-panel hideToggle class="mat-elevation-z0">
@@ -45,53 +45,33 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary" class="mat-elevation-z3">
-      <!-- sandvich button -->
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-        *ngIf="is_handser | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <!-- fin móvil-->
-      <!-- inicio escritorio botones -->
-      <img class="retrocompu" src="../../../assets/logo.png" alt="">
-      <b class="name">Retrocompu</b>
-      <div class="buttons">
-        <button class="button" mat-flat-button [routerLink]="['/productos/']">Productos</button>
-        <button mat-button [matMenuTriggerFor]="corporativo">Corporativo</button>
-        <mat-menu #corporativo="matMenu">
-          <button mat-menu-item [matMenuTriggerFor]="socios">Socios</button>
-          <button mat-menu-item [matMenuTriggerFor]="acopio">Centros de Acopio</button>
-        </mat-menu>
-        <mat-menu #socios="matMenu">
-          <button mat-menu-item>Nuestros socios</button>
-          <button mat-menu-item>Conviértete en un socio</button>
-        </mat-menu>
-        <mat-menu #acopio="matMenu">
-          <button mat-menu-item>Centros de acopio</button>
-          <button mat-menu-item>Conviértete en un C.A.</button>
-        </mat-menu>
-        <button mat-button [matMenuTriggerFor]="ayuda">Ayuda</button>
-        <mat-menu #ayuda="matMenu">
-          <button mat-menu-item >Preguntas Frecuentes</button>
-          <button mat-menu-item >Soporte técnico</button>
-        </mat-menu>
-        <button mat-icon-button matBadge={{cart_container.length}} [routerLink]="['/carrito/']" aria-label="shopping_cart">
-          <mat-icon>shopping_cart</mat-icon>
-        </button>
-        <span style="padding-right: 10px;"></span>
-        <button class="button" *ngIf="!is_logged" mat-flat-button [routerLink]="['/ingresar/']">Iniciar sesión</button>
-        <button class="button" *ngIf="!is_logged" color="primary" mat-flat-button [routerLink]="['/registrarse/']">Registrarse</button>
-        <button class="button" [matMenuTriggerFor]="perfil" *ngIf="is_logged" mat-flat-button [routerLink]="['/registrarse/']"><mat-icon>account_circle</mat-icon> {{user_data.name }} ∨	</button>
-        <mat-menu #perfil="matMenu">
-          <button mat-menu-item [routerLink]="(['/compras/'])">Mis compras</button>
-          <button mat-menu-item [routerLink]="(['/perfil/'])"> Mi perfíl</button>
-          <button *ngIf="is_logged" color="warn" (click)="signOut()" mat-flat-button [routerLink]="['/registrarse/']">Cerrar sesión</button>
-        </mat-menu>
+    <nav class="toolbar">
+      <div class="logo" [routerLink]="['/']">
+        <img src="../../../assets/logo.png" alt="Logo">
       </div>
-      <!-- fin escritorio-->
-    </mat-toolbar>
+      <div class="buttons">
+        <button class="content">Categorías<span class="flecha"></span></button>
+        <button class="content">Envíos</button>
+        <button class="content">Donaciones</button>
+        <button class="content">Sobre nosotros</button>
+      </div>
+
+      <div>
+        <input type="text" placeholder="Buscar producto">
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </div>
+
+      <div>
+        <button class="content"> <mat-icon>person</mat-icon> Cuenta</button>
+        <button class="content" [routerLink]="['/carrito']"> <mat-icon>shopping_cart</mat-icon> Carrito</button>
+      </div>
+
+    </nav>
+
     <!-- App component -->
-    <router-outlet></router-outlet>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 <!--
