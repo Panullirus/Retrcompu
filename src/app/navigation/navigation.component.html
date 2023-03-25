@@ -62,7 +62,18 @@
       </div>
 
       <div>
-        <button class="content" [routerLink]="['/ingresar']"> <mat-icon>person</mat-icon> Cuenta<span class="flecha"></span></button>
+        <button class="content" [matMenuTriggerFor]="menuPrice"> <mat-icon>person</mat-icon> Cuenta<span class="flecha"></span></button>
+        <mat-menu #menuPrice="matMenu" class="menu-dropdown">
+          <button mat-menu-item>
+            <span>Mi perfil</span>
+          </button>
+          <button mat-menu-item [routerLink]="['/compras']">
+            <span>Mis compras</span>
+          </button>
+          <button mat-menu-item>
+            <span>Cerrar sesión</span>
+          </button>
+        </mat-menu>
         <button class="content" [routerLink]="['/carrito']"> <mat-icon>shopping_cart</mat-icon> Carrito</button>
       </div>
 

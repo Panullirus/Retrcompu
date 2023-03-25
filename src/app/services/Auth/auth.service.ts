@@ -6,6 +6,7 @@ import { User } from 'src/app/interfaces/User';
 import * as CryptoJS from 'crypto-js';
 import { Product } from 'src/app/interfaces/Products';
 import { GoogleAuthProvider } from "firebase/auth";
+import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -69,9 +70,8 @@ export class AuthService {
     return encryptUser
   }
 
-  GetAllAddressDirection(user_ID: string | null | undefined): AngularFireList<User> {
-    this.usersRef = this._database.list(`${this.UsersPath}/${user_ID}/address_direction`)
-    return this.usersRef
+  GetAllAddressDirection(user_ID: string | null | undefined) {
+    return this._database.list(`${this.UsersPath}/${user_ID}/address_direction`).valueChanges()
   }
 
   getAllCartProducts(user_ID: string | null | undefined): AngularFireList<User> {
@@ -135,7 +135,7 @@ export class AuthService {
     }, 1000)
   }
 
-  VerifyIfAccountGoogleExistInDatabase(emailFromGoogleAccount: string | undefined) {
+  VerifyIfAccountGoogleExistInDatabase(emailFromGoogleAccount: string | undefined | null) {
     const usersList = this._database.list(this.UsersPath).valueChanges();
 
     usersList.subscribe((res: any) => {

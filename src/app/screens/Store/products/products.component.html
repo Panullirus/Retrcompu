@@ -2,8 +2,27 @@
   <img src="https://img.freepik.com/free-vector/black-friday-sale-banner-design-with-shopping-trolly_1055-9167.jpg"
     alt="banner" width="100%" height="300">
   <div class="filters">
-    <div class="chips"><span class="title">Tipo de computadora<span class="flecha"></span></span></div>
-    <div class="chips"><span class="title">Precio<span class="flecha"></span></span></div>
+    <div class="chips" [matMenuTriggerFor]="menuType"><span class="title">Tipo de computadora<span
+          class="flecha"></span></span></div>
+    <mat-menu #menuType="matMenu" class="menu-dropdown">
+      <button mat-menu-item>
+        <span>Procesador</span>
+      </button>
+      <button mat-menu-item>
+        <span>Procesador AMD</span>
+      </button>
+    </mat-menu>
+    <div class="chips" [matMenuTriggerFor]="menuPrice">
+      <span class="title">Precio<span class="flecha"></span></span>
+    </div>
+    <mat-menu #menuPrice="matMenu" class="menu-dropdown">
+      <button mat-menu-item (click)="setMaPrice($event)">
+        <span>Mayor precio</span>
+      </button>
+      <button mat-menu-item (click)="setMiPrice($event)">
+        <span>Menor precio</span>
+      </button>
+    </mat-menu>
     <div class="chips"><span class="title">Calificación<span class="flecha"></span></span></div>
     <div class="chips"><span class="title">Color<span class="flecha"></span></span></div>
     <div class="chips"><span class="title">Memoria<span class="flecha"></span></span></div>
@@ -37,11 +56,7 @@
           <span class="estrella">&#9734;</span>
         </div>
         <button class="add-cart" (click)="setProductCart(product)">
-          <span class="add-cart-text">Agregar al carrito</span>
-          <span class="add-cart-loader">
-            <i class="fas fa-spinner fa-spin"></i>
-            <i class="fas fa-check"></i>
-          </span>
+          Agregar al carrito
         </button>
       </div>
     </div>

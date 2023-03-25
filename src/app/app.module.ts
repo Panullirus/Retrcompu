@@ -29,12 +29,22 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+
 
 //ANGULAR FIREBASE
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from 'src/environments/environment';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { PurchasedProductsComponent } from './screens/Profile/purchased-products/purchased-products.component';
+import { Purchased2ProductsComponent } from './screens/Profile/purchased2-products/purchased2-products.component';
+
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -47,7 +57,9 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     ProductsComponent,
     MercadoPagoComponent,
     ProductInfoComponent,
-    NavigationComponent
+    NavigationComponent,
+    PurchasedProductsComponent,
+    Purchased2ProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -55,13 +67,18 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FontAwesomeModule,
     //ANGULAR MATERIAL
     MatSidenavModule,
     MatListModule,
+    MatChipsModule,
     MatSlideToggleModule,
     MatMenuModule,
     MatExpansionModule,
+    ClipboardModule,
     MatSnackBarModule,
+    MatCardModule,
+    MatGridListModule,
     MatRadioModule,
     MatSelectModule,
     MatProgressSpinnerModule,
