@@ -29,9 +29,9 @@ export class LoginComponent {
   handlerOnLoginWithGoogle() {
     this._auth.RegisterWithGoogleAccount().then((res) => {
 
-      const uid = this._auth.EncryptUserId(res.user?.uid)
+      const uid: any = this._auth.EncryptUserId(res.user?.uid)
 
-      if (this._auth.VerifyIfAccountGoogleExistInDatabase(res.user?.uid)) {
+      if (this._auth.VerifyIfAccountGoogleExistInDatabase(res.user?.email)) {
         console.log("Usuario ya existe => ", res)
         this._auth.CreateExpitarionToken(10800000, uid)
         this.route.navigate([''])
@@ -39,13 +39,10 @@ export class LoginComponent {
         console.log("No existe usuario, creando...")
         this._auth.CreateExpitarionToken(10800000, uid)
 
-        const userData: Pick<User, "name" | "email" | "user_ID" | "saved_products" | "purchased_products" | "image_profile"> = {
+        const userData: Pick<User, "name" | "email" | "user_ID" | "saved_products" | "purchased_products"> = {
           name: String(res.user?.displayName),
           email: String(res.user?.email),
           user_ID: res.user?.uid,
-          saved_products: 0,
-          purchased_products: 0,
-          image_profile: '',
         }
 
         this._auth.CreateUserInRealTimeDatabase(userData, res.user?.uid)

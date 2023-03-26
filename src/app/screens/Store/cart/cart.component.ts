@@ -183,18 +183,30 @@ export class CartComponent {
     })
   }
 
+  // getAddressDirection() {
+  //   this._auth.GetCurrentDataUser().subscribe((data: any) => {
+  //     this.user_data = data
+  //     this._auth.GetAllAddressDirection(this.user_data.user_ID).snapshotChanges().pipe(
+  //       map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })
+  //       )
+  //       )
+  //     ).subscribe((data: any) => {
+  //       this.addressDirectionContainer = data
+  //       console.log(this.addressDirectionContainer)
+  //     })
+  //   })
+  // }
+
   getAddressDirection() {
     this._auth.GetCurrentDataUser().subscribe((data: any) => {
       this.user_data = data
-      this._auth.GetAllAddressDirection(this.user_data.user_ID).snapshotChanges().pipe(
-        map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })
-        )
-        )
-      ).subscribe((data: any) => {
-        this.addressDirectionContainer = data
+      this._auth.GetAllAddressDirection(this.user_data.user_ID).subscribe(data => {
+        this.addressDirectionContainer = data;
+        console.log(this.addressDirectionContainer)
       })
     })
   }
+
 
   openAddAddressDirectionForm() {
     if (!this.addAddressForm) {
@@ -205,20 +217,36 @@ export class CartComponent {
   }
 
   goToMercadoPago() {
-    this.createPreference(this.address_selected, this.quotation_address_selected)
   }
 
   handlerOnAddAddress() {
     this._auth.GetCurrentDataUser().subscribe((data: any) => {
       this.user_data = data
-    })
 
-    this._address.setNewAddress(this.searchCPForm.value, this.user_data.user_ID).subscribe(data => {
-      console.log(data)
-      this.cpContainer.status = 'no'
-    })
+      const input = {
+        asentamiento: 'La guadalupana',
+        reference: 'casa de dos pisos',
+        cp: "77724",
+        exterior_house_number: "820",
+        municipality: 'Solidaridad',
+        state: 'Quintana Roo',
+        city: 'Playa del carmen',
+        name: 'Yahir',
+        last_name: 'González',
+        phone_number: "9841420792",
+        street: 'Cerrada uruguay',
+        crossStreet: 'Calle uruguay',
+      }
 
-    this.openAddAddressDirectionForm()
+      console.log(this.user_data)
+
+      this._address.setNewAddress(input, this.user_data.user_ID).subscribe(data => {
+        console.log(data)
+        this.cpContainer.status = 'no'
+      })
+
+      this.openAddAddressDirectionForm()
+    })
   }
 
   setCityToForm(city: AddressForcsec) {
@@ -287,6 +315,9 @@ export class CartComponent {
     this.productTotal = total + this.quotation_address_selected.total
 
     this.isFullShipment = true
+
+    this.createPreference(this.address_selected, this.quotation_address_selected)
+
   }
 
   setAddress(address: Address | any) {

@@ -133,3 +133,27 @@
   font-weight: 400;
   color: hsl(52, 0%, 98%);
 }
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  }
+
+  .col {
+  flex: 1;
+  margin-right: 10px;
+  }
+
+  input {
+  margin: 5px;
+  padding: 15px;
+  border-radius: 3px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  }
+
+  label{
+  font-size: 16px;
+  font-weight: 400;
+  }

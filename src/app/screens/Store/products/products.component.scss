@@ -200,10 +200,6 @@
   transition: all 0.3s ease-in-out;
 }
 
-.button:hover {
-  background-color: #013d29;
-  color: white;
-}
 
 
 //SPINNER
@@ -255,3 +251,34 @@
   display: none;
 }
 
+//DROPDOWN
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-dropdown{
+  background: #08ac0a;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}

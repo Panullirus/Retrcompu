@@ -16,8 +16,8 @@ export class ProductsComponent {
 
   public spinner!: boolean;
 
-  public disableMiPrice: boolean = false;
-  public disableMaPrice: boolean = false;
+  public enableMiPrice: boolean = false;
+  public enableMaPrice: boolean = false;
 
   public MSI: number = 3
   public spinner_shipment!: boolean;
@@ -41,7 +41,29 @@ export class ProductsComponent {
   }
 
   setMiPrice(item: any) {
-    if (item.checked) {
+
+    if (this.enableMaPrice) {
+      this.enableMaPrice = false
+      this.enableMiPrice = true
+
+      if (item) {
+        if (this.filtered_product_container == undefined) {
+          this.products_container.sort((a: any, b: any) => {
+            return a.unit_price - b.unit_price
+          })
+        } else {
+          this.filtered_product_container.sort((a: any, b: any) => {
+            return a.unit_price - b.unit_price
+          })
+        }
+      } else {
+        this.handlerGetAllProducts()
+      }
+    }
+
+    this.enableMiPrice
+
+    if (item) {
       if (this.filtered_product_container == undefined) {
         this.products_container.sort((a: any, b: any) => {
           return a.unit_price - b.unit_price
@@ -51,11 +73,10 @@ export class ProductsComponent {
           return a.unit_price - b.unit_price
         })
       }
-      this.disableMaPrice = true;
     } else {
       this.handlerGetAllProducts()
-      this.disableMaPrice = false;
     }
+
   }
 
   goToProductInfo(producto: any) {
@@ -76,7 +97,27 @@ export class ProductsComponent {
   }
 
   setMaPrice(item: any) {
-    if (item.checked) {
+    if (this.enableMiPrice) {
+      this.enableMiPrice = false
+      this.enableMaPrice = true
+      if (item) {
+        if (this.filtered_product_container == undefined) {
+          this.products_container.sort((a: any, b: any) => {
+            return b.unit_price - a.unit_price
+          })
+        } else {
+          this.filtered_product_container.sort((a: any, b: any) => {
+            return b.unit_price - a.unit_price
+          })
+        }
+      } else {
+        this.handlerGetAllProducts()
+      }
+    }
+
+    this.enableMaPrice = true
+
+    if (item) {
       if (this.filtered_product_container == undefined) {
         this.products_container.sort((a: any, b: any) => {
           return b.unit_price - a.unit_price
@@ -86,10 +127,8 @@ export class ProductsComponent {
           return b.unit_price - a.unit_price
         })
       }
-      this.disableMiPrice = true;
     } else {
       this.handlerGetAllProducts()
-      this.disableMiPrice = false;
     }
   }
 

@@ -38,7 +38,7 @@
                   </div>
                 </mat-radio-button>
               </mat-radio-group>
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+              <button placeholder="Escribe aquí..." type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                 (click)="openAddAddressDirectionForm()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle"
                   viewBox="0 0 16 16">
@@ -88,19 +88,19 @@
             <form [formGroup]="searchCPForm" (ngSubmit)="handlerOnAddAddress()" autocomplete="off">
               <div>
                 <label for="">Nombre</label>
-                <input type="text" formControlName="name" placeholder="Nombre completo">
+                <input placeholder="Escribe aquí..." type="text" formControlName="name" placeholder="Nombre completo">
               </div>
               <div>
                 <label for="">Apellido</label>
-                <input type="text" formControlName="last_name" placeholder="Nombre completo">
+                <input placeholder="Escribe aquí..." type="text" formControlName="last_name" placeholder="Nombre completo">
               </div>
               <div>
                 <label for="">Numero de teléfono</label>
-                <input type="text" formControlName="phone_number" placeholder="Número de teléfono">
+                <input placeholder="Escribe aquí..." type="text" formControlName="phone_number" placeholder="Número de teléfono">
               </div>
               <div>
                 <label for="">Código postal</label>
-                <input type="text" formControlName="cp" placeholder="Ingresa tu código postal">
+                <input placeholder="Escribe aquí..." type="text" formControlName="cp" placeholder="Ingresa tu código postal">
               </div>
               <span (click)="hanlderOnSearchCp()">Buscar código postal</span>
 
@@ -119,35 +119,35 @@
 
                 <div>
                   <label for="">Estado</label>
-                  <input type="text" formControlName="state" placeholder="Estado">
+                  <input placeholder="Escribe aquí..." type="text" formControlName="state" placeholder="Estado">
                 </div>
                 <div>
                   <label for="">Municipio</label>
-                  <input type="text" formControlName="municipality" placeholder="Municipio">
+                  <input placeholder="Escribe aquí..." type="text" formControlName="municipality" placeholder="Municipio">
                 </div>
                 <div>
                   <label for="">Ciudad</label>
-                  <input type="text" formControlName="city" placeholder="Ciudad">
+                  <input placeholder="Escribe aquí..." type="text" formControlName="city" placeholder="Ciudad">
                 </div>
                 <div>
                   <label for="">Número exterior</label>
-                  <input type="text" formControlName="exterior_house_number" placeholder="Ingresa tu # de casa">
+                  <input placeholder="Escribe aquí..." type="text" formControlName="exterior_house_number" placeholder="Ingresa tu # de casa">
                 </div>
                 <div>
                   <label for="">Número interior</label>
-                  <input type="text" formControlName="interior_house_number" placeholder="Ingresa tu # interior">
+                  <input placeholder="Escribe aquí..." type="text" formControlName="interior_house_number" placeholder="Ingresa tu # interior">
                 </div>
                 <div>
                   <label for="">Calle</label>
-                  <input type="text" formControlName="street" placeholder="Ingresa tu # interior">
+                  <input placeholder="Escribe aquí..." type="text" formControlName="street" placeholder="Ingresa tu # interior">
                 </div>
                 <div>
                   <label for="">Entre calles</label>
-                  <input type="text" formControlName="crossStreet" placeholder="Ingresa tu dirección">
+                  <input placeholder="Escribe aquí..." type="text" formControlName="crossStreet" placeholder="Ingresa tu dirección">
                 </div>
                 <div>
                   <label for="">Referencias</label>
-                  <input type="text" formControlName="reference" placeholder="Ingresa tu dirección">
+                  <input placeholder="Escribe aquí..." type="text" formControlName="reference" placeholder="Ingresa tu dirección">
                 </div>
               </div>
               <button [disabled]="!searchCPForm.valid">Guardar</button>
@@ -208,79 +208,132 @@
     </div>
 
     <div class="checkout-shipping">
-      <h3>Dirección de envío</h3>
-      <form [formGroup]="searchCPForm">
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label>Asentamiento</label>
-            <input type="text" class="form-control" formControlName="asentamiento">
+      <h2>Dirección de envío</h2>
+      <form [formGroup]="searchCPForm" (ngSubmit)="handlerOnAddAddress()">
+        <div class="row">
+          <div class="col">
+            <label>Nombre:</label>
+            <input formControlName="name" placeholder="Escribe aquí..." type="text">
           </div>
-          <div class="form-group col-md-4">
-            <label>Referencia</label>
-            <input type="text" class="form-control" formControlName="reference">
+          <div class="col">
+            <label>Apellido:</label>
+            <input formControlName="last_name" placeholder="Escribe aquí..." type="text">
           </div>
-          <div class="form-group col-md-4">
-            <label>Código Postal</label>
-            <input type="text" class="form-control" formControlName="cp">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label>Número interior</label>
-            <input type="text" class="form-control" formControlName="interior_house_number">
-          </div>
-          <div class="form-group col-md-4">
-            <label>Número exterior</label>
-            <input type="text" class="form-control" formControlName="exterior_house_number">
-          </div>
-          <div class="form-group col-md-4">
-            <label>Municipio/Delegación</label>
-            <input type="text" class="form-control" formControlName="municipality">
+          <div class="col">
+            <label>Teléfono:</label>
+            <input formControlName="phone_number" placeholder="Escribe aquí..." type="text">
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label>Estado</label>
-            <input type="text" class="form-control" formControlName="state">
+        <div class="row">
+          <div class="col">
+            <label>Código postal:</label>
+            <input formControlName="cp" placeholder="Escribe aquí..." type="text" (blur)="hanlderOnSearchCp()">
           </div>
-          <div class="form-group col-md-4">
-            <label>Ciudad</label>
-            <input type="text" class="form-control" formControlName="city">
+          <div class="col">
+            <label>Número exterior:</label>
+            <input formControlName="exterior_house_number" placeholder="Escribe aquí..." type="text">
           </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label>Nombre(s)</label>
-            <input type="text" class="form-control" formControlName="name">
-          </div>
-          <div class="form-group col-md-6">
-            <label>Apellidos</label>
-            <input type="text" class="form-control" formControlName="last_name">
+          <div class="col">
+            <label>Municipio:</label>
+            <input formControlName="municipality" placeholder="Escribe aquí..." type="text">
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label>Teléfono</label>
-            <input type="text" class="form-control" formControlName="phone_number">
+        <div class="row">
+          <div class="col">
+            <label>Estado:</label>
+            <input formControlName="state" placeholder="Escribe aquí..." type="text">
+          </div>
+          <div class="col">
+            <label>Ciudad:</label>
+            <input formControlName="city" placeholder="Escribe aquí..." type="text">
+          </div>
+          <div class="col">
+            <label>Asentamiento:</label>
+            <input formControlName="asentamiento" placeholder="Escribe aquí..." type="text">
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label>Calle</label>
-            <input type="text" class="form-control" formControlName="street">
+        <div class="row">
+          <div class="col">
+            <label>Referencia:</label>
+            <input formControlName="reference" placeholder="Escribe aquí..." type="text">
           </div>
-          <div class="form-group col-md-6">
-            <label>Cruzamiento</label>
-            <input type="text" class="form-control" formControlName="crossStreet">
+          <div class="col">
+            <label>Número interior:</label>
+            <input formControlName="interior_house_number" placeholder="Escribe aquí..." type="text">
+          </div>
+          <div class="col">
+            <label>Calle:</label>
+            <input formControlName="street" placeholder="Escribe aquí..." type="text">
           </div>
         </div>
+        <div class="row">
+          <div class="col">
+            <label>Calle cruzada:</label>
+            <input formControlName="crossStreet" placeholder="Escribe aquí..." type="text">
+          </div>
+        </div>
+        <button placeholder="Escribe aquí..." type="submit">Enviar</button>
       </form>
+    </div>
+    <mat-radio-group class="radio-group">
+      <mat-radio-button class="card radio-button" style="padding: 10px;"
+        *ngFor="let address of addressDirectionContainer" [value]="address">
+        <div (click)="setAddress(address)">
+          <span style="text-align: start;">
+            <span style="font-size: 20px; font-weight: 500;"> C.P. {{address?.cp}}</span>
+            <br>
+            {{address?.street}} - {{address?.asentamiento}} - {{address?.city}} - {{address?.state}}
+            <br>
+            {{address?.name}} {{address?.last_name}} - {{address?.phone_number}}
+            <br>
+          </span>
+        </div>
+      </mat-radio-button>
+    </mat-radio-group>
+    <div>
+      <div *ngIf="quotation_address">
+        <div style="padding-top: 10px;">
+          <span style="font-weight: 500; font-size: x-large;">Selecciona el envío que más se acomode a tus
+            necesidades</span>
+        </div>
+        <div *ngIf="!spinner_shipment">
+          <div class="quotation">
+            <mat-radio-group class="radio-group">
+              <mat-radio-button class="card radio-button" style="padding: 10px; width: 50%;"
+                *ngFor="let quotation of quotation_address" [value]="quotation">
+                <div (click)="setshipmentAddress(quotation)">
+                  <span style="text-align: start;">
+                    <img *ngIf="quotation.carrier == 'ESTAFETA'"
+                      src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Logo_de_Estafeta.svg" alt="" height="25">
+                    <img *ngIf="quotation.carrier == 'JTEXPRESS'" src="../../../../assets/shipment-icons/jtexpress.svg"
+                      alt="" height="30">
+                    <img *ngIf="quotation.carrier == 'REDPACK'" src="../../../../assets/shipment-icons/redpack.svg"
+                      alt="" height="23">
+                    <img *ngIf="quotation.carrier == 'PAQUETEXPRESS'"
+                      src="../../../../assets/shipment-icons/paquete-express-logo-1601057014.jpg" alt="" height="50">
+                    <br>
+                    Paquetería: {{quotation.carrier}}
+                    <br>
+                    Fecha de entrega: {{quotation.deliveryDays}} días
+                    <br>
+                    Precio de envío: ${{quotation.total}}
+                  </span>
+                </div>
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="spinner_shipment">
+        <mat-spinner></mat-spinner>
+      </div>
     </div>
   </div>
   <div class="checkout-right">
     <div class="payment-details">
       <h2 class="payment-title">Detalles de pago</h2>
+      <button id={{FORM_ID}} *ngIf="isFullShipment">Ir a pagar</button>
+      <!-- <form id={{FORM_ID}} method="GET"></form> -->
     </div>
-    <button class="checkout-button">Pagar</button>
   </div>
 </div>
