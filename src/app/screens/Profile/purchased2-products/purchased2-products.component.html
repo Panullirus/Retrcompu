@@ -1,93 +1,82 @@
-<div class="spinner" *ngIf="spinner">
-  <mat-spinner></mat-spinner>
-</div>
+<div class="container">
+  <div class="column">
+    <div class="section">
+      <h2>Resumen de la compra</h2>
+      <div class="order-summary">
+        <div class="item">
+          <p class="product-name">Producto 1</p>
+          <p class="product-price">$20.00</p>
+        </div>
+        <div class="item">
+          <p class="product-name">Producto 2</p>
+          <p class="product-price">$30.00</p>
+        </div>
+        <div class="item">
+          <p class="product-name">Producto 3</p>
+          <p class="product-price">$15.00</p>
+        </div>
+        <hr>
+        <div class="total">
+          <p class="total-label">Total:</p>
+          <p class="total-amount">$65.00</p>
+        </div>
+      </div>
+    </div>
 
-<div class="content" *ngIf="!spinner">
-  <h1>Pedido número: {{purchase_id}}</h1>
-  <button type="button" (click)="cancelProduct()" class="btn btn-danger" *ngIf="cancel_shipment">Cancelar pedido</button>
-  <h2>¿Estás seguro de cancelar este pedido? Se te reembolsará el 100% de tu compra*</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Producto</th>
-        <th>Descripción</th>
-        <th>Precio</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of product_bought; let i = index">
-        <td>{{product?.title}}</td>
-        <td>{{product?.description}}</td>
-        <td>${{product?.unit_price}}</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="row">
-    <div class="col">
-      <h2>Dirección de envío</h2>
-      <div>
-        <span>Calle: {{address_to.street}}</span>
-        <br>
-        <span>Entre calles: {{address_to.crossStreet}}</span>
-        <br>
-        <span>Código postal: {{address_to.cp}}</span>
-        <br>
-        <span>Ciudad: {{address_to.city}}</span>
-        <br>
-        <span>Estado: {{address_to.state}}</span>
-      </div>
-    </div>
-    <div class="col">
-      <h2>Método de pago</h2>
-      <div class="alert alert-warning" role="alert">
-        Retrocompu no guarda la información de tarjetas de crédito, la información mostrada es para fines informativos
-      </div>
-      <div>
-        <span>Número de transacción: {{payment_data.payment_id}}</span>
-        <br>
-        <span>Tipo de pago: {{payment_data.payment_type}}</span>
-        <br>
-        <span>Estatus de compra: {{payment_data.status}}</span>
+    <div class="section">
+      <h2>Detalles de envío</h2>
+      <div class="shipping-details">
+        <div class="item">
+          <p class="label">Dirección de envío:</p>
+          <p class="value">Calle 123, Colonia Centro, CDMX</p>
+        </div>
+        <div class="item">
+          <p class="label">Método de envío:</p>
+          <p class="value">Envío estándar</p>
+        </div>
+        <div class="item">
+          <p class="label">Fecha estimada de entrega:</p>
+          <p class="value">26 de marzo, 2023</p>
+        </div>
+        <div class="item">
+          <p class="label">Número de seguimiento:</p>
+          <p class="value">1234567890</p>
+        </div>
       </div>
     </div>
   </div>
-  <div>
-    <h1>Detalles del envío</h1>
-  <div *ngIf="shipment_label !== []">
-      <div class="alert alert-primary" role="alert">
-        Dentro de las próximas 48 horas estaremos preparando tu paquete para ser enviado, puedes revisar más información en el medio de transporte que elejiste
-      </div>
-      <br>
-      <span>Tiempo estimado de envío: {{shipment_label.deliveryDays}} días</span>
-      <br>
-      <span>Número de orden: <h3>{{shipment_label.idOrder}}</h3></span>
-      <button [cdkCopyToClipboard]="shipment_label.idOrder">copiar</button>
-      <br>
-      <span>Número de guía: <h3>{{shipment_label.tracker}}</h3></span>
-      <button [cdkCopyToClipboard]="shipment_label.tracker">copiar</button>
-    </div>
-    <div *ngIf="shipment_label == []">
-      <h1>NO HYA NADA</h1>
-    </div>
-  </div>
-  <div class="row" style="place-items: center; padding: 100px;">
-    <div class="col">
-      <div class="packing">
-        <fa-icon [icon]="faBoxesPacking" size="6x"></fa-icon>
-        <h3 style="text-align: center;">Preparando tu pedido</h3>
+
+  <div class="column">
+    <div class="section">
+      <h2>Información de pago</h2>
+      <div *ngIf="payment_data.type === 'credit_card'">
+        <div class="item">
+          <p class="label" >Tarjeta de crédito:</p>
+          <p class="value">**** **** **** {{payment_data.last_four_digits}}</p>
+        </div>
+        <div class="item">
+          <p class="label">Nombre del titular:</p>
+          <p class="value">{{payment_data.name}}</p>
+        </div>
       </div>
     </div>
-    <div class="col">
-      <div class="on-road">
-        <fa-icon [icon]="faTruckFast" size="6x"></fa-icon>
-        <h3 style="text-align: center;">En camino</h3>
-      </div>
-    </div>
-    <div class="col">
-      <div class="entregado">
-        <fa-icon [icon]="faHouse" size="6x"></fa-icon>
-        <h3 style="text-align: center;">Entregado</h3>
-      </div>
+
+    <div class="section">
+      <h2>Estado del envío</h2>
+      <ul class="timeline">
+        <li class="completed">
+          <span class="date">Marzo 20, 2023</span>
+          <span class="event">Se ha procesado tu pedido.</span>
+        </li>
+        <li class="completed">
+          <span class="date">Marzo 22, 2023</span>
+          <span class="event">Tu pedido ha sido enviado.</span>
+        </li>
+        <li class="current">
+          <span class="date">Marzo 24, 2023</span>
+          <span class="event">Tu pedido está en camino.</span>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

@@ -31,26 +31,24 @@ export class LoginComponent {
 
       const uid: any = this._auth.EncryptUserId(res.user?.uid)
 
-      this._auth.VerifyIfAccountGoogleExistInDatabase(res.user?.email)
+      if (this._auth.VerifyIfAccountGoogleExistInDatabase(res.user?.email)) {
+        console.log("Usuario ya existe => ", res)
+        this._auth.CreateExpitarionToken(10800000, uid)
+        this.route.navigate([''])
+      } else {
+        console.log("No existe usuario, creando...")
+        this._auth.CreateExpitarionToken(10800000, uid)
 
-      // if (this._auth.VerifyIfAccountGoogleExistInDatabase(res.user.email)) {
-      //   console.log("Usuario ya existe => ", res)
-      //   this._auth.CreateExpitarionToken(10800000, uid)
-      //   this.route.navigate([''])
-      // } else {
-      //   console.log("No existe usuario, creando...")
-      //   this._auth.CreateExpitarionToken(10800000, uid)
+        const userData: Pick<User, "name" | "email" | "user_ID" | "saved_products" | "purchased_products"> = {
+          name: String(res.user?.displayName),
+          email: String(res.user?.email),
+          user_ID: res.user?.uid,
+        }
 
-      //   const userData: Pick<User, "name" | "email" | "user_ID" | "saved_products" | "purchased_products"> = {
-      //     name: String(res.user?.displayName),
-      //     email: String(res.user?.email),
-      //     user_ID: res.user?.uid,
-      //   }
+        this._auth.CreateUserInRealTimeDatabase(userData, res.user?.uid)
 
-      //   this._auth.CreateUserInRealTimeDatabase(userData, res.user?.uid)
-
-      //   this.route.navigate([''])
-      // }
+        this.route.navigate([''])
+      }
     })
   }
 }

@@ -332,8 +332,8 @@
   <div class="checkout-right">
     <div class="payment-details">
       <h2 class="payment-title">Detalles de pago</h2>
-      <button (click)="goToMercadoPago()" *ngIf="isFullShipment">Ir a pagar</button>
-      <form id={{FORM_ID}} method="GET"></form>
+      <button id={{FORM_ID}} *ngIf="isFullShipment">Ir a pagar</button>
+      <!-- <form id={{FORM_ID}} method="GET"></form> -->
     </div>
   </div>
 </div>

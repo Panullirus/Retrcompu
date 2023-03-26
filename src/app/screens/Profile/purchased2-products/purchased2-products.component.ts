@@ -29,7 +29,7 @@ export class Purchased2ProductsComponent implements OnInit {
   public purchase_id!: number;
   public user_data!: User;
   public purchase_product!: [Product];
-  public product_bought!: [Product];
+  public product_bought!: any;
 
   constructor(private _purchases: PurchaseService, private _auth: AuthService, private route: Router) { }
 
@@ -51,25 +51,25 @@ export class Purchased2ProductsComponent implements OnInit {
 
       const key = this.searchPurchaseFromUrl()
 
+      console.log(key)
+
       try {
-        this._purchases.getPurchaseUser(this.user_data.user_ID).snapshotChanges().pipe(
-          map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })
-          )
-          )
-        ).subscribe(data => {
-          this.spinner = false;
+        this._purchases.getPurchaseUser(this.user_data.user_ID, key).subscribe((data: any) => {
+          // this.spinner = false;
 
-          const product: any = data.filter(function (el) {
-            return el.key == key
-          })
+          // this.shipment_label = product[0].shipment_label.data
+          // this.purchase_product = product
+          // this.purchase_id = product[0].merchant_order_id
+          this.payment_data = {
+            last_four_digits: data[2].card.last_four_digits,
+            id: data[2].payment_method_id,
+            type: data[2].payment_type_id,
+            name: data[2].card.cardholder.name
+          }
+          // this.address_to = product[0].retrocompu_user_data.addressTo
+          // this.payment_data = product[0]
 
-          this.shipment_label = product[0].shipment_label.data
-          this.purchase_product = product
-          this.purchase_id = product[0].merchant_order_id
-          this.product_bought = product[0].retrocompu_user_data.cart_products
-          this.address_to = product[0].retrocompu_user_data.addressTo
-          this.payment_data = product[0]
-
+          console.log(data)
         })
       } catch (error) {
         this.route.navigate(['404'])

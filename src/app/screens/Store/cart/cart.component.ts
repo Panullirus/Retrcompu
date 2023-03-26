@@ -217,7 +217,6 @@ export class CartComponent {
   }
 
   goToMercadoPago() {
-    this.createPreference(this.address_selected, this.quotation_address_selected)
   }
 
   handlerOnAddAddress() {
@@ -316,6 +315,9 @@ export class CartComponent {
     this.productTotal = total + this.quotation_address_selected.total
 
     this.isFullShipment = true
+
+    this.createPreference(this.address_selected, this.quotation_address_selected)
+
   }
 
   setAddress(address: Address | any) {

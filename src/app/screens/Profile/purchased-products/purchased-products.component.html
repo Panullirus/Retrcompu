@@ -11,13 +11,13 @@
         <mat-card-content>
           <mat-grid-list cols="4">
             <mat-grid-tile>
-              <img src={{purchases.retrocompu_user_data.cart_products[0].picture_url}} alt="" height="100">
+              <img src={{purchases.cart_products[0].picture_url}} alt="" height="100">
             </mat-grid-tile>
             <mat-grid-tile>
-              <span>{{purchases.retrocompu_user_data.cart_products.length}} productos</span>
+              <span>{{purchases.cart_products.length}} productos</span>
             </mat-grid-tile>
             <mat-grid-tile>
-              Estado del pago: <mat-chip color="accent"> {{purchases.status}}</mat-chip>
+              Estado del pago: <mat-chip color="accent"> {{purchases.payment_info.status}}</mat-chip>
             </mat-grid-tile>
             <mat-grid-tile>
               <button mat-flat-button color="primary" (click)="goToVerCompras(purchases)">Ver compra</button>

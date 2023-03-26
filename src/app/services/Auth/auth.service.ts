@@ -135,18 +135,36 @@ export class AuthService {
     }, 1000)
   }
 
-  VerifyIfAccountGoogleExistInDatabase(emailFromGoogleAccount: string | undefined | null) {
-    const usersList = this._database.list(this.UsersPath).valueChanges();
+  getAllUsers(){
+    return this._database.list(this.UsersPath).snapshotChanges().pipe(
+      map(users => {
+        return users.map(user => {
+          const data: any = user.payload.val();
+          const id = user.payload.key;
+          return {id, ...data}
+        })
+      })
+    )
+  }
 
-    usersList.subscribe((res: any) => {
-      for (let email of res) {
-        if (email.email == emailFromGoogleAccount) {
-          this.userState = true;
-        }
-      }
+  VerifyIfAccountGoogleExistInDatabase(emailFromGoogleAccount: string | undefined | null) {
+    return this.getAllUsers().subscribe(res => {
+
+      const email_array =  res.find(obj => obj.email === emailFromGoogleAccount)
+
+      console.log(email_array)
+
+      return email_array ? true : false;
+
     })
 
-    return this.userState;
+    // usersList.subscribe((res: any) => {
+    //   for (let email of res) {
+    //     if (email.email == emailFromGoogleAccount) {
+    //       this.userState = true;
+    //     }
+    //   }
+    // })
 
   }
 

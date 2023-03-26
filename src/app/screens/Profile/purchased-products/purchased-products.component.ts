@@ -32,6 +32,7 @@ export class PurchasedProductsComponent implements OnInit {
       ).subscribe((data: any) => {
         this.spinner = false;
         this.user_products = data
+        console.log(data)
       })
     })
   }
