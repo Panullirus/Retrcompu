@@ -29,6 +29,7 @@
 .product-card {
   display: flex;
   margin-bottom: 20px;
+  justify-content: space-between;
 }
 
 .product-image {
@@ -37,7 +38,7 @@
 }
 
 .product-info {
-  width: 70%;
+  width: 50%;
   align-self: center;
 }
 
@@ -96,7 +97,7 @@
   }
 
   .checkout-right {
-    width: 100%;
+    width: 30%;
     padding: 20px;
   }
 }

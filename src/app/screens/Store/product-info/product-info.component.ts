@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductInfoComponent implements OnInit{
 
   public product: any = {};
+  public product_price: number = 0;
 
   constructor(private _store: StoreService, private route: ActivatedRoute){}
 
@@ -17,10 +18,18 @@ export class ProductInfoComponent implements OnInit{
     const urlParams = new URLSearchParams(window.location.search);
     var producto = urlParams.get('id');
 
-    const data = this._store.findProduct(producto).subscribe(data => {
-      console.log(data)
+    this._store.findProduct(producto).subscribe(data => {
+      this.product = data;
+
+      const price: any = this.product[12]
+
+      this.product_price = price.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     })
 
+  }
+
+  getProductList(product: any){
+    console.log(product)
   }
 
 

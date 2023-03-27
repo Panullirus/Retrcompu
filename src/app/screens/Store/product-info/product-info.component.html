@@ -1,19 +1,70 @@
-<div class="product-info">
+<section class="product-detail">
   <div class="product-images">
-    <img src={{product.picture_url}} alt="Product Main Image" class="product-main-image">
-    <div class="product-small-images">
-      <img src={{product.picture_url}} alt="Product Small Image 1" class="product-small-image">
-      <img src={{product.picture_url}} alt="Product Small Image 2" class="product-small-image">
-      <img src={{product.picture_url}} alt="Product Small Image 3" class="product-small-image">
-      <img src={{product.picture_url}} alt="Product Small Image 4" class="product-small-image">
+    <div class="main-image">
+      <img src={{product[5]}} alt="Imagen principal">
     </div>
   </div>
-  <div class="product-details">
-    <h1 class="product-title">{{product.title}}</h1>
-    <p class="product-description">{{product.description}}
-    <p>
-    <p class="product-price">$19.99</p>
-    <button class="buy-now-btn">Comprar ahora</button>
-    <button class="add-cart">Agregar al carrito</button>
+
+  <div class="product-info">
+    <h1>{{product[10]}}</h1>
+    <p class="price">{{product[11]}}</p>
+    <p class="description">{{product[3]}}</p>
+    <div class="buttons">
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" min="1" max="10" value="1">
+      <button class="add-cart" (click)="getProductList(product)">
+        Agregar al carrito
+      </button>
+      <br>
+      <button class="buy-now" (click)="getProductList(product)">
+        Comprar ahora!
+      </button>
+    </div>
+    <table class="specifications">
+      <tr>
+        <td>Procesado</td>
+        <td>{{product[4]?.processor}}</td>
+      </tr>
+      <tr>
+        <td>Memoria RAM</td>
+        <td>{{product[4]?.memory_ram}}</td>
+      </tr>
+      <tr>
+        <td>Almacenamiento</td>
+        <td>{{product[4]?.memory_rom}}</td>
+      </tr>
+      <tr>
+        <td>Tamaño de pantalla</td>
+        <td>{{product[4]?.screen_size}} pulgadas</td>
+      </tr>
+      <tr>
+        <td>Graphics Card</td>
+        <td>----</td>
+      </tr>
+    </table>
   </div>
-</div>
+</section>
+
+<section class="similar-products">
+  <h2>Otros productos</h2>
+  <div class="card-container">
+    <div class="product-card">
+      <img src="laptop4.jpg" alt="Laptop 4">
+      <h3>Laptop Y</h3>
+      <p class="price">$900</p>
+      <button type="button" class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <img src="laptop5.jpg" alt="Laptop 5">
+      <h3>Laptop Z</h3>
+      <p class="price">$1200</p>
+      <button type="button" class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <img src="laptop6.jpg" alt="Laptop 6">
+      <h3>Laptop A</h3>
+      <p class="price">$800</p>
+      <button type="button" class="add-to-cart">Add to Cart</button>
+    </div>
+  </div>
+</section>

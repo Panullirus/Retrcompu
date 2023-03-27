@@ -29,9 +29,7 @@ export class NavigationComponent implements OnInit {
       this.user_data = data
       if (data == null) {
         this.is_logged = false;
-        console.log("no hay")
       } else {
-        console.log("si hay")
         this.is_logged = true;
 
       }
@@ -48,7 +46,6 @@ export class NavigationComponent implements OnInit {
         )
       ).subscribe((data: any) => {
         this.cart_container = data
-        console.log(this.cart_container)
       })
     })
   }

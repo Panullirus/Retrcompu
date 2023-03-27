@@ -172,14 +172,29 @@ export class AuthService {
     return this._auth.sendPasswordResetEmail(email);
   }
 
-  UpdateUserCart(product: Product, user_ID: string | null | undefined) {
+  UpdateQuantityProductCart(data: any){
+
+    return this.http.post("http://localhost:8080/set_cart_product", data)
+  }
+
+  UpdateUserAddCart(product: Product, user_ID: string | null | undefined) {
 
     const product_data = {
       product: product,
       user_ID: user_ID
     }
 
-    return this.http.post("http://localhost:8080/set_cart_product", product_data)
+    return this.http.post("http://localhost:8080/set_add_product", product_data)
+  }
+
+  UpdateUserQuitCart(product: Product, user_ID: string | null | undefined) {
+
+    const product_data = {
+      product: product,
+      user_ID: user_ID
+    }
+
+    return this.http.post("http://localhost:8080/set_quit_product", product_data)
   }
 
   GetCartQuantify() {
