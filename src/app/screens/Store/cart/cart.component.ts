@@ -74,7 +74,6 @@ export class CartComponent {
           )
         ).subscribe((data: any) => {
           this.cart_container = data
-          console.log(this.cart_container)
         })
       } catch (error) {
         this.isLogged = false;
@@ -202,7 +201,6 @@ export class CartComponent {
       this.user_data = data
       this._auth.GetAllAddressDirection(this.user_data.user_ID).subscribe(data => {
         this.addressDirectionContainer = data;
-        console.log(this.addressDirectionContainer)
       })
     })
   }
@@ -278,6 +276,76 @@ export class CartComponent {
       this.user_data = data
       this._auth.DeleteOneProduct(product.key, this.user_data.user_ID)
     })
+  }
+
+  setProductCart(product: Product) {
+
+    console.log(product)
+
+    try {
+      this._auth.GetCurrentDataUser().subscribe((data: any) => {
+        this.user_data = data
+      })
+
+      // Mostrar spinner
+      const button = document.querySelector('.add-cart');
+      if (button) {
+        button.classList.add('loading');
+
+        const add_quantity = { ...product, quantity: 1 }
+
+        this._auth.UpdateUserAddCart(add_quantity, this.user_data.user_ID).subscribe(() => {
+          // Ocultar spinner y mostrar símbolo de check después de 500ms
+          setTimeout(() => {
+            button.classList.remove('loading');
+            button.classList.add('success');
+            setTimeout(() => {
+              // Restablecer botón después de otros 500ms
+              button.classList.remove('success');
+            }, 5000);
+          }, 5000);
+
+        })
+      }
+
+    } catch (error) {
+      alert('ingresa para agregar al carrito')
+    }
+  }
+
+  setProductQuitCart(product: Product) {
+
+    console.log(product)
+
+    try {
+      this._auth.GetCurrentDataUser().subscribe((data: any) => {
+        this.user_data = data
+      })
+
+      // Mostrar spinner
+      const button = document.querySelector('.add-cart');
+      if (button) {
+        button.classList.add('loading');
+
+        const add_quantity = product
+
+        this._auth.UpdateUserQuitCart(add_quantity, this.user_data.user_ID).subscribe(() => {
+          // Ocultar spinner y mostrar símbolo de check después de 500ms
+          setTimeout(() => {
+            button.classList.remove('loading');
+            button.classList.add('success');
+            setTimeout(() => {
+              // Restablecer botón después de otros 500ms
+              button.classList.remove('success');
+            }, 5000);
+          }, 5000);
+
+        })
+      }
+
+    } catch (error) {
+      alert('ingresa para agregar al carrito')
+    }
   }
 
   openMercadoPagoScript(preference: string) {

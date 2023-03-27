@@ -37,6 +37,13 @@ export interface Product {
   }
 }
 
+export interface UpdateCartUser{
+  product?: Product,
+  user_id: string | null | undefined,
+  id?: string,
+  quantity: number
+}
+
 export interface SoldProduct {
   key?: string
   collection_id?: number

@@ -243,7 +243,9 @@ export class ProductsComponent {
       if (button) {
         button.classList.add('loading');
 
-        this._auth.UpdateUserCart(product, this.user_data.user_ID).subscribe(() => {
+        const add_quantity = {...product, quantity: 1}
+
+        this._auth.UpdateUserAddCart(add_quantity, this.user_data.user_ID).subscribe(() => {
           // Ocultar spinner y mostrar símbolo de check después de 500ms
           setTimeout(() => {
             button.classList.remove('loading');

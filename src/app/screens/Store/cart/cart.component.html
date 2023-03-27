@@ -194,20 +194,20 @@
       <h2>Productos en tu carrito</h2>
       <div class="product-card" *ngFor="let product of cart_container; let i = index">
         <div class="product-image">
-          <img src={{product.picture_url}} alt="Product Image">
-        </div>
-        <div class="product-info">
-          <h3 class="title">{{product.title}}</h3>
-          <p class="description">{{product.description}}</p>
+          <img src={{product.picture_url}} alt="Product Image" height="100">
         </div>
         <div class="product-price-quantity">
-          <p class="precio">{{product.unit_price}}</p>
-          <p>Cantidad: 1</p>
+          <p class="precio">${{product.unit_price * product.quantity}}</p>
+        </div>
+        <div class="product-price-quantity">
+          <button class="add-cart" (click)="setProductQuitCart(product)">-</button>
+          <p style="padding: 5px;">{{product.quantity}}</p>
+          <button class="add-cart" (click)="setProductCart(product)">+</button>
         </div>
       </div>
     </div>
 
-    <div class="checkout-shipping">
+    <!-- <div class="checkout-shipping">
       <h2>Dirección de envío</h2>
       <form [formGroup]="searchCPForm" (ngSubmit)="handlerOnAddAddress()">
         <div class="row">
@@ -274,11 +274,11 @@
         </div>
         <button placeholder="Escribe aquí..." type="submit">Enviar</button>
       </form>
-    </div>
+    </div> -->
     <mat-radio-group class="radio-group">
       <mat-radio-button class="card radio-button" style="padding: 10px;"
-        *ngFor="let address of addressDirectionContainer" [value]="address">
-        <div (click)="setAddress(address)">
+        *ngFor="let address of addressDirectionContainer" [value]="address" (click)="setAddress(address)">
+        <div>
           <span style="text-align: start;">
             <span style="font-size: 20px; font-weight: 500;"> C.P. {{address?.cp}}</span>
             <br>
